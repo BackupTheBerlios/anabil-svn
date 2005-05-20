@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!--
+ Anabil - Bill analyzer.
+ Copyright (C) 2005  Matt Hillsdon.
+ 
+ This program is free software; you can redistribute it and/or
+ modify it under the terms of the GNU General Public License
+ as published by the Free Software Foundation; either version 2
+ of the License, or (at your option) any later version.
+ 
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ 
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
+-->
+
+<project default="dist" basedir=".">
+  
+  <target name="init">
+    <property name="name"         value="anabil"/>
+    <property name="packages"     value="com.hillsdon.anabil.*"/>
+    <property name="src.dir"      value="${basedir}/src"/>
+    <property name="build.dir"    value="${basedir}/bin"/>
+    <property name="docs.dir"     value="${basedir}/docs"/>
+    <property name="apidocs.dir"  value="${docs.dir}/api"/>
+    <property name="build.dest"   value="${build.dir}/classes"/>
+    <property name="lib.dir"      value="${basedir}/lib"/>
+    <property name="class.path"   value="${lib.dir}/ostermillerutils_1_04_03_for_java_1_4.jar:${lib.dir}/junit-3.8.1.jar:${build.dest}"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <mkdir dir="${build.dest}"/>
+    <javac srcdir="${src.dir}" destdir="${build.dest}" classpath="${class.path}" debug="true"/>
+  </target>
+
+  <target name="dist" depends="compile">
+    <jar jarfile="${basedir}/${name}.jar" 
+         manifest="${basedir}/MANIFEST.MF"
+         basedir="${build.dest}"
+	 includes="anabil/**"
+    />
+  </target>
+
+  <target name="apidocs" depends="init">
+    <mkdir dir="${apidocs.dir}"/>
+    <javadoc packagenames="${packages}"
+             author="true"
+             destdir="${apidocs.dir}"
+             doctitle="${name}"
+             sourcepath="${src.dir}"
+             use="true"
+             version="true"
+             windowtitle="${name} API"/>
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${build.dir}"/>
+  </target>
+</project>

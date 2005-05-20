@@ -1,0 +1,2 @@
+Main-Class: anabil.swingui.Application
+Class-Path: lib/ostermillerutils_1_04_03_for_java_1_4.jar
