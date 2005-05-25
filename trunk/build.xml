@@ -3,12 +3,12 @@
  Anabil - Bill analyzer.
  Copyright (C) 2005  Matt Hillsdon.
  
- This program is free software; you can redistribute it and/or
+ This program is free software; you can rejarribute it and/or
  modify it under the terms of the GNU General Public License
  as published by the Free Software Foundation; either version 2
  of the License, or (at your option) any later version.
  
- This program is distributed in the hope that it will be useful,
+ This program is jarributed in the hope that it will be useful,
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  GNU General Public License for more details.
@@ -18,13 +18,14 @@
  Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA
 -->
 
-<project default="dist" basedir=".">
+<project default="jar" basedir=".">
   
   <target name="init">
     <property name="name"         value="anabil"/>
     <property name="packages"     value="com.hillsdon.anabil.*"/>
     <property name="src.dir"      value="${basedir}/src"/>
-    <property name="build.dir"    value="${basedir}/bin"/>
+    <property name="dist.dir"    value="${basedir}/dist"/>
+    <property name="build.dir"    value="${basedir}/build"/>
     <property name="docs.dir"     value="${basedir}/docs"/>
     <property name="apidocs.dir"  value="${docs.dir}/api"/>
     <property name="build.dest"   value="${build.dir}/classes"/>
@@ -37,7 +38,7 @@
     <javac srcdir="${src.dir}" destdir="${build.dest}" classpath="${class.path}" debug="true"/>
   </target>
 
-  <target name="dist" depends="compile">
+  <target name="jar" depends="compile">
     <jar jarfile="${basedir}/${name}.jar" 
          manifest="${basedir}/MANIFEST.MF"
          basedir="${build.dest}"
