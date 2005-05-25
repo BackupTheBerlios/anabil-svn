@@ -21,12 +21,30 @@ package anabil.swingui.util;
 
 import javax.swing.ListModel;
 
+/**
+ * A mutable list model, similar to the mutable combo box
+ * model.
+ */
 public interface MutableListModel extends ListModel {
 
-  public abstract void removeElementAt(final int index);
+  /**
+   * Remove the element at the given index.
+   * @param index the index.
+   */
+  void removeElementAt(int index);
 
-  public abstract void removeElement(final Object element);
+  /**
+   * Remove the given element, if present.
+   * @param element the element.
+   */
+  void removeElement(Object element);
 
-  public abstract void insertElementAt(final Object element, final int index);
+  /**
+   * Insert the given element at the given position.
+   * @param element the element.
+   * @param index the position to insert at.
+   */
+  void insertElementAt(Object element, int index);
 
 }
+
